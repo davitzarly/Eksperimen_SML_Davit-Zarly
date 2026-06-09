@@ -1,0 +1,39 @@
+name: Preprocessing Dataset
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  preprocessing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run actions/checkout@v3
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.12.7
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.7"
+
+      - name: Check Env
+        run: |
+          python --version
+          pip --version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas==2.2.2 scikit-learn==1.5.1 joblib==1.4.2
+
+      - name: Run preprocessing
+        run: |
+          python preprocessing/automate_Nama-siswa.py --input namadataset_raw/hotel_bookings.csv --output preprocessing/namadataset_preprocessing
+
+      - name: Upload preprocessed dataset
+        uses: actions/upload-artifact@v4
+        with:
+          name: namadataset_preprocessing
+          path: preprocessing/namadataset_preprocessing
