@@ -1,1 +1,7 @@
-preprocessing/namadataset_preprocessing/train_preprocessed.csv
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Folder duplikat hasil salinan lokal; root repo cukup memakai folder
+# namadataset_raw dan preprocessing.
+/Eksperimen_SML_Nama-siswa/

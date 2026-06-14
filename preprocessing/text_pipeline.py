@@ -141,8 +141,8 @@ def run_preprocessing(
     preprocessor_path = output_path / "preprocessor.joblib"
     feature_names_path = output_path / "feature_names.txt"
 
-    train_processed.to_csv(train_path, index=False)
-    test_processed.to_csv(test_path, index=False)
+    train_processed.to_csv(train_path, index=False, float_format="%.6g")
+    test_processed.to_csv(test_path, index=False, float_format="%.6g")
     joblib.dump(preprocessor, preprocessor_path)
     feature_names_path.write_text("\n".join(feature_names), encoding="utf-8")
     metadata_path.write_text(
